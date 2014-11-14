@@ -8,20 +8,32 @@ section .text
 	global outb
 	global inb
 outb:
-	pop edx		; uint16 port
-	pop eax		; uint8  value
+	push ebp
+	mov ebp, esp
+
+	mov edx, [ebp + 8]		; uint16 port
+	mov eax, [ebp + 12]		; uint8  value
 	out dx, al
-	leave
+	
+	pop ebp
 	ret
 inb:
-	pop edx		; uint16 port
+	push ebp
+	mov ebp, esp
+
+	mov edx, [ebp + 8]		; uint16 port
 	xor ax, ax
 	in al, dx
-	leave
+	
+	pop ebp
 	ret
 inw:
-	pop edx		; uint16 port
+	push ebp
+	mov ebp, esp
+	
+	mov edx, [ebp + 8]		; uint16 port
 	xor ax, ax
 	in ax, dx
-	leave
+	
+	pop ebp
 	ret
