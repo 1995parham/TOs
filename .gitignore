@@ -4,4 +4,5 @@
 .idea
 
 # Ignore test result
+
 bochsout.txt
