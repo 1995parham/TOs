@@ -11,8 +11,7 @@ u8int cursor_x = 0;
 u8int cursor_y = 0;
 
 // Updates the hardware cursor.
-static void move_cursor()
-{
+static void move_cursor(){
     // The screen is 80 characters wide...
     u16int cursorLocation = cursor_y * 80 + cursor_x;
     outb(0x3D4, 14);                  // Tell the VGA board we are setting the high cursor byte.

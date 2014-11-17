@@ -1,4 +1,4 @@
-SOURCES=boot.o main.o common.o monitor.o
+SOURCES=boot.o main.o common.o common.asm.o monitor.o descriptor_tables.o isr.o gdt.o interrupt.o
 
 CFLAGS=-m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector
 LDFLAGS=-melf_i386 -Tlink.ld
@@ -14,5 +14,9 @@ link:
 
 boot.o:
 	nasm $(ASFLAGS) boot.asm
-common.o:
-	nasm $(ASFLAGS) common.asm
+common.asm.o:
+	nasm $(ASFLAGS) -o common.asm.o common.asm
+gdt.o:
+	nasm $(ASFLAGS) gdt.asm
+interrupt.o:
+	nasm $(ASFLAGS) interrupt.asm
