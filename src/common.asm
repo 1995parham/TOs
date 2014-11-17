@@ -1,5 +1,5 @@
-;
-;	common.asm---common assembly function for common.h header file
+; In the name of god
+; common.asm -- common assembly function for common.h header file
 ;	Parham Alvani(parham.alvani@gmail.com)
 ;	14 November 2015
 

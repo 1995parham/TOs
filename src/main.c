@@ -1,3 +1,8 @@
+// In the name of god
+// main.c -- TOs kernel main c file
+//	Parham Alvani(parham.alvani@gmail.com)
+//	14 November 2015
+
 #include "monitor.h"
 
 int main(struct multiboot *mboot_ptr)
