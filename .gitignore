@@ -1,0 +1,7 @@
+# gitignore file for TOs
+
+.git
+.idea
+
+# Ignore test result
+bochsout.txt
