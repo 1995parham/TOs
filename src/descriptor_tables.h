@@ -24,6 +24,25 @@ struct gdt_entry_struct{
     	u8int  base_high;           // The last 8 bits of the base.
 } __attribute__((packed));
 
+// AMD64 legacy code segement descriptor model
+// 31                 24 23 22 21 20 19   16 15 14   13 12 11 10 9  8  7         0
+// |----------------------------------------|-------------------------------------|
+// |    Base Address    |G |D |= |A |Segment|P |DPL    |1 |1 |C |R |A |   Base    |
+// |       [31:24]      |  |  |= |V |Limit  |  |       |  |  |  |  |  |  Address  | +4
+// |                    |  |  |= |L |[19:16]|  |       |  |  |  |  |  |  [23:16]  |
+// |----------------------------------------|-------------------------------------|
+// |           Base Address[15:0]           |		Segment Limit[15:0]       | +0
+// |----------------------------------------|-------------------------------------|
+//
+// AMD64 segment selector
+// 15                         3 2  1   0 
+// |------------------------------------|
+// |    Selector Index[3:15]   |T | RPL |
+// |                           |I |     |
+// |------------------------------------|
+// * TI : Table Indicator
+// * RPL : Request Privilege Leve
+
 typedef struct gdt_entry_struct gdt_entry_t;
 
 // This struct describes a GDT pointer. It points to the start of
