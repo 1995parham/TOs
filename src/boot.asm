@@ -42,7 +42,6 @@ start:
   ; Execute the kernel:
   cli                         	; Disable interrupts.
   call main                   	; call our main() function.
-  int 1
   jmp $                       	; Enter an infinite loop, to stop the processor
                               	; executing whatever rubbish is in the memory
                               	; after our kernel! 
