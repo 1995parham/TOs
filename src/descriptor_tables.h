@@ -50,7 +50,7 @@ typedef struct gdt_entry_struct gdt_entry_t;
 // lgdt instruction.
 struct gdt_ptr_struct{
     	u16int limit;               // The upper 16 bits of all selector limits.
-    	u32int base;                // The address of the first gdt_entry_t struct.
+    	u32int base;	            // The address of the first gdt_entry_t struct.
 } __attribute__((packed));
 
 typedef struct gdt_ptr_struct gdt_ptr_t;
@@ -108,3 +108,19 @@ extern void isr28();
 extern void isr29();
 extern void isr30();
 extern void isr31();
+extern void irq0 ();
+extern void irq1 ();
+extern void irq2 ();
+extern void irq3 ();
+extern void irq4 ();
+extern void irq5 ();
+extern void irq6 ();
+extern void irq7 ();
+extern void irq8 ();
+extern void irq9 ();
+extern void irq10();
+extern void irq11();
+extern void irq12();
+extern void irq13();
+extern void irq14();
+extern void irq15();
