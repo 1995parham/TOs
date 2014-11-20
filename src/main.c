@@ -6,8 +6,9 @@
 #include "monitor.h"
 #include "descriptor_tables.h"
 #include "timer.h"
+#include "multiboot.h"
 
-int main(struct multiboot *mboot_ptr)
+int main(multiboot_info_t *mboot_ptr)
 {
 	// All our initialisation calls will go in here.
 	monitor_clear();
