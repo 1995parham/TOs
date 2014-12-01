@@ -4,7 +4,7 @@
 // 
 // * Creation Date : 01-12-2014
 //
-// * Last Modified : Mon 01 Dec 2014 08:37:46 AM IRST
+// * Last Modified : Mon 01 Dec 2014 09:33:59 PM IRST
 //
 // * Created By : Parham Alvani (parham.alvani@gmail.com)
 // =======================================
@@ -12,6 +12,7 @@
 #include "descriptor_tables.h"
 #include "timer.h"
 #include "multiboot.h"
+#include "sound.h"
 
 int main(multiboot_info_t *mboot_ptr) {
 	monitor_clear();
@@ -23,10 +24,12 @@ int main(multiboot_info_t *mboot_ptr) {
 	
 	init_descriptor_tables();
 	
-	asm volatile ("int $0x3");
 	asm volatile ("sti");
 	
 	init_timer(50);	//Initialise timer to 50Hz
+	init_exception();
+
+	beep();
 
 	return 0xDEADBABA;
 } 

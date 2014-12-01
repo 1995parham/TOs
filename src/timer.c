@@ -1,10 +1,10 @@
 // In The Name Of God
 // ========================================
-// * File Name : timer-h.c
+// * File Name : timer.c
 // 
 // * Creation Date : 01-12-2014
 //
-// * Last Modified : Mon 01 Dec 2014 08:40:29 AM IRST
+// * Last Modified : Mon 01 Dec 2014 09:35:57 PM IRST
 //
 // * Created By : Parham Alvani (parham.alvani@gmail.com)
 // =======================================
@@ -12,10 +12,11 @@
 #include "isr.h"
 #include "monitor.h"
 
-u32int tick = 0;
+static u32int tick = 0;
 
 static void timer_callback(registers_t regs){
 	tick++;
+	// Timer work well so i commented test command
     	monitor_write("Tick: ");
     	monitor_write_dec(tick);
     	monitor_write("\n");
@@ -35,9 +36,16 @@ void init_timer(u32int frequency){
 
     	// Divisor has to be sent byte-wise, so split here into upper/lower bytes.
     	u8int l = (u8int)(divisor & 0xFF);
-    	u8int h = (u8int)( (divisor>>8) & 0xFF );
+    	u8int h = (u8int)((divisor>>8) & 0xFF);
 
     	// Send the frequency divisor.
     	outb(0x40, l);
     	outb(0x40, h);
+}
+
+void timer_wait(u32int t){
+	u32int local_tick = tick;
+	while(tick < local_tick + t){
+		monitor_write("we are waiting\n");
+	}
 }

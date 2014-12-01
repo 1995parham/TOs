@@ -1,13 +1,15 @@
 // In The Name Of God
 // ========================================
-// * File Name : isr-h.c
+// * File Name : isr.h
 // 
 // * Creation Date : 01-12-2014
 //
-// * Last Modified : Mon 01 Dec 2014 08:34:00 AM IRST
+// * Last Modified : Mon 01 Dec 2014 09:33:00 PM IRST
 //
 // * Created By : Parham Alvani (parham.alvani@gmail.com)
 // =======================================
+#ifndef ISR_H
+#define ISR_H
 #include "common.h"
 
 // A few defines to make life a little easier
@@ -40,3 +42,4 @@ typedef struct registers{
 // first parameter.
 typedef void (*isr_t)(registers_t);
 void register_interrupt_handler(u8int n, isr_t handler);
+#endif
