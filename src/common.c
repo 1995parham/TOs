@@ -4,22 +4,22 @@
 // 
 // * Creation Date : 01-12-2014
 //
-// * Last Modified : Mon 01 Dec 2014 08:28:02 AM IRST
+// * Last Modified : Tue 02 Dec 2014 12:58:29 AM IRST
 //
 // * Created By : Parham Alvani (parham.alvani@gmail.com)
 // =======================================
 #include "common.h"
 
 // Copy len bytes from src to dest.
-void memcpy(u8int *dest, const u8int *src, u32int len){
-    	const u8int *sp = (const u8int *)src;
-    	u8int *dp = (u8int *)dest;
+void memcpy(uint8_t *dest, const uint8_t *src, uint32_t len){
+    	const uint8_t *sp = (const uint8_t *)src;
+    	uint8_t *dp = (uint8_t *)dest;
     	for(; len != 0; len--) *dp++ = *sp++;
 }
 
 // Write len copies of val into dest.
-void memset(u8int *dest, u8int val, u32int len){
-    	u8int *temp = (u8int *)dest;
+void memset(uint8_t *dest, uint8_t val, uint32_t len){
+    	uint8_t *temp = (uint8_t *)dest;
     	for ( ; len != 0; len--) *temp++ = val;
 }
 

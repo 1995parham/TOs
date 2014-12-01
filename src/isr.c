@@ -4,7 +4,7 @@
 // 
 // * Creation Date : 01-12-2014
 //
-// * Last Modified : Mon 01 Dec 2014 09:09:41 PM IRST
+// * Last Modified : Tue 02 Dec 2014 12:35:25 AM IRST
 //
 // * Created By : Parham Alvani (parham.alvani@gmail.com)
 // =======================================
@@ -14,7 +14,7 @@
 
 isr_t interrupt_handlers[256];
 
-void register_interrupt_handler(u8int n, isr_t handler){
+void register_interrupt_handler(uint8_t n, isr_t handler){
 	interrupt_handlers[n] = handler;
 }
 
