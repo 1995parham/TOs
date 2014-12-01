@@ -4,7 +4,7 @@
 // 
 // * Creation Date : 01-12-2014
 //
-// * Last Modified : Mon 01 Dec 2014 09:02:55 PM IRST
+// * Last Modified : Tue 02 Dec 2014 12:53:13 AM IRST
 //
 // * Created By : Parham Alvani (parham.alvani@gmail.com)
 // =======================================
@@ -13,6 +13,6 @@
 
 #include "common.h"
 
-void init_timer(u32int frequency);
+void init_timer(uint32_t frequency);
 
 #endif
