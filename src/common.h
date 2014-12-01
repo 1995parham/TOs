@@ -1,6 +1,13 @@
-// common.h -- Defines typedefs and some global functions.
-//             From JamesM's kernel development tutorials.
-
+// In The Name Of God
+// ========================================
+// * File Name : common-h.c
+// 
+// * Creation Date : 01-12-2014
+//
+// * Last Modified : Mon 01 Dec 2014 08:28:11 AM IRST
+//
+// * Created By : Parham Alvani (parham.alvani@gmail.com)
+// =======================================
 #ifndef COMMON_H
 #define COMMON_H
 

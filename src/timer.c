@@ -1,9 +1,13 @@
-// In the name of god
-// timer.c -- Initialises the PIT, and handles clock updates.
-//	Written for JamesM's kernel development tutorials.
-//	Rewritten for TOs development.
-//	20 November 2015
-
+// In The Name Of God
+// ========================================
+// * File Name : timer-h.c
+// 
+// * Creation Date : 01-12-2014
+//
+// * Last Modified : Mon 01 Dec 2014 08:40:29 AM IRST
+//
+// * Created By : Parham Alvani (parham.alvani@gmail.com)
+// =======================================
 #include "timer.h"
 #include "isr.h"
 #include "monitor.h"

@@ -1,6 +1,13 @@
-// monitor.h -- Defines the interface for monitor.h
-//              From JamesM's kernel development tutorials.
-
+// In The Name Of God
+// ========================================
+// * File Name : monitor.h
+// 
+// * Creation Date : 01-12-2014
+//
+// * Last Modified : Mon 01 Dec 2014 08:39:00 AM IRST
+//
+// * Created By : Parham Alvani (parham.alvani@gmail.com)
+// =======================================
 #ifndef MONITOR_H
 #define MONITOR_H
 

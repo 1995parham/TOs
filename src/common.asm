@@ -1,7 +1,13 @@
-; In the name of god
-; common.asm -- common assembly function for common.h header file
-;	Parham Alvani(parham.alvani@gmail.com)
-;	14 November 2014
+; In The Name Of God
+; ========================================
+; * File Name : common.asm
+; 
+; * Creation Date : 01-12-2014
+;
+; * Last Modified : Mon 01 Dec 2014 08:27:19 AM IRST
+;
+; * Created By : Parham Alvani (parham.alvani@gmail.com)
+; =======================================
 
 BITS 32
 section .text

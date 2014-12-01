@@ -1,9 +1,13 @@
-// In the name of god
-// timer.h -- Defines the interface for all PIT-related functions.
-//	Written for JamesM's kernel development tutorials.
-//	Rewritten for TOs development.
-//	20 November 2015
-
+// In The Name Of God
+// ========================================
+// * File Name : timer-h.c
+// 
+// * Creation Date : 01-12-2014
+//
+// * Last Modified : Mon 01 Dec 2014 08:40:37 AM IRST
+//
+// * Created By : Parham Alvani (parham.alvani@gmail.com)
+// =======================================
 #ifndef TIMER_H
 #define TIMER_H
 
