@@ -1,7 +1,13 @@
-; In the name of god
-; boot.asm -- Kernel start location. Also defines multiboot header.
-;	Based on Bran's kernel development tutorial file start.asm
-;	Rewritten for TOs kernel development.
+; In The Name Of God
+; ========================================
+; * File Name : boot.asm
+; 
+; * Creation Date : 01-12-2014
+;
+; * Last Modified : Mon 01 Dec 2014 08:26:08 AM IRST
+;
+; * Created By : Parham Alvani (parham.alvani@gmail.com)
+; =======================================
 
 MBOOT_PAGE_ALIGN    equ 1<<0    	; Load kernel and modules on a page boundary
 MBOOT_MEM_INFO      equ 1<<1    	; Provide your kernel with memory info

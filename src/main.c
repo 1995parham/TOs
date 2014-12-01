@@ -1,8 +1,13 @@
-// In the name of god
-// main.c -- TOs kernel main c file
-//	Parham Alvani(parham.alvani@gmail.com)
-//	14 November 2014
-
+// In The Name Of God
+// ========================================
+// * File Name : main-h.c
+// 
+// * Creation Date : 01-12-2014
+//
+// * Last Modified : Mon 01 Dec 2014 08:37:46 AM IRST
+//
+// * Created By : Parham Alvani (parham.alvani@gmail.com)
+// =======================================
 #include "monitor.h"
 #include "descriptor_tables.h"
 #include "timer.h"

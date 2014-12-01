@@ -1,11 +1,13 @@
-// In the name of god
-// descriptor_tables.c - Initialises the GDT and IDT, and defines the 
-// 	default ISR and IRQ handler.
-//	Based on code from Bran's kernel development tutorials.
-//	Rewritten for JamesM's kernel development tutorials.
-//	Rewritten for TOs kernel development.
-//	17 November 2015
-
+// In The Name Of God
+// ========================================
+// * File Name : descriptor_tables-h.c
+// 
+// * Creation Date : 01-12-2014
+//
+// * Last Modified : Mon 01 Dec 2014 08:30:20 AM IRST
+//
+// * Created By : Parham Alvani (parham.alvani@gmail.com)
+// =======================================
 #include "common.h"
 #include "descriptor_tables.h"
 

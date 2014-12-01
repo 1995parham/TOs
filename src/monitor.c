@@ -1,9 +1,13 @@
-// In the name of god
-// monitor.c -- Defines functions for writing to the monitor.
-//             heavily based on Bran's kernel development tutorials,
-//             but rewritten for JamesM's kernel tutorials.
-//             rewritten for TOs development.
-
+// In The Name Of God
+// ========================================
+// * File Name : monitor.c
+// 
+// * Creation Date : 01-12-2014
+//
+// * Last Modified : Mon 01 Dec 2014 08:38:41 AM IRST
+//
+// * Created By : Parham Alvani (parham.alvani@gmail.com)
+// =======================================
 #include "monitor.h"
 
 // The VGA framebuffer starts at 0xB8000.

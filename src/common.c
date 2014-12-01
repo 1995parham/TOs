@@ -1,7 +1,13 @@
-// In the name of god
-// common.c -- Defines some global functions.
-//	From JamesM's kernel development tutorials.
-
+// In The Name Of God
+// ========================================
+// * File Name : common-h.c
+// 
+// * Creation Date : 01-12-2014
+//
+// * Last Modified : Mon 01 Dec 2014 08:28:02 AM IRST
+//
+// * Created By : Parham Alvani (parham.alvani@gmail.com)
+// =======================================
 #include "common.h"
 
 // Copy len bytes from src to dest.
@@ -29,7 +35,6 @@ int strcmp(char *str1, char *str2){
           	}
           	i++;
       	}
-      	// why did the loop exit?
       	if((str1[i] == '\0' && str2[i] != '\0') || (str1[i] != '\0' && str2[i] == '\0'))
           	failed = 1; 
       	return failed;

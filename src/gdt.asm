@@ -1,11 +1,13 @@
-; In the name of god
-; Gdt.s -- contains global descriptor table and interrupt descriptor table
-;	setup code.
-;       Based on code from Bran's kernel development tutorials.
-;	Rewritten for JamesM's kernel development tutorials.
-;	Rewritten for TOs kernel development.
-;	17 November 2015
-
+; In The Name Of God
+; ========================================
+; * File Name : gdt.asm
+; 
+; * Creation Date : 01-12-2014
+;
+; * Last Modified : Mon 01 Dec 2014 08:31:35 AM IRST
+;
+; * Created By : Parham Alvani (parham.alvani@gmail.com)
+; =======================================
 global gdt_flush    	  ; Allows the C code to call gdt_flush().
 gdt_flush:
     	mov eax, [esp+4]  ; Get the pointer to the GDT, passed as a parameter.
