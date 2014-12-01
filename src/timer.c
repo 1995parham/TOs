@@ -4,7 +4,7 @@
 // 
 // * Creation Date : 01-12-2014
 //
-// * Last Modified : Mon 01 Dec 2014 09:35:57 PM IRST
+// * Last Modified : Mon 01 Dec 2014 09:41:49 PM IRST
 //
 // * Created By : Parham Alvani (parham.alvani@gmail.com)
 // =======================================
@@ -17,9 +17,9 @@ static u32int tick = 0;
 static void timer_callback(registers_t regs){
 	tick++;
 	// Timer work well so i commented test command
-    	monitor_write("Tick: ");
-    	monitor_write_dec(tick);
-    	monitor_write("\n");
+    	// monitor_write("Tick: ");
+    	// monitor_write_dec(tick);
+    	// monitor_write("\n");
 }
 
 void init_timer(u32int frequency){
@@ -46,6 +46,5 @@ void init_timer(u32int frequency){
 void timer_wait(u32int t){
 	u32int local_tick = tick;
 	while(tick < local_tick + t){
-		monitor_write("we are waiting\n");
 	}
 }
