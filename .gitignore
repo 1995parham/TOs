@@ -1,13 +1,13 @@
-<<<<<<< HEAD
 # gitignore file for TOs
-
 .git
 .idea
 
-# Ignore test result
+# Ignore kernel file
+kernel
 
+# Ignore test result
 bochsout.txt
-=======
+
 # Object files
 *.o
 *.ko
@@ -37,4 +37,3 @@ bochsout.txt
 *.i*86
 *.x86_64
 *.hex
->>>>>>> 4e673553cd5daf6a4170cf5ce4abafea79500220
