@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # gitignore file for TOs
 
 .git
@@ -6,3 +7,34 @@
 # Ignore test result
 
 bochsout.txt
+=======
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+>>>>>>> 4e673553cd5daf6a4170cf5ce4abafea79500220
