@@ -1,13 +1,15 @@
-// In The Name Of God
-// ========================================
-// * File Name : descriptor_tables-h.c
-// 
-// * Creation Date : 01-12-2014
-//
-// * Last Modified : Tue 02 Dec 2014 12:33:29 AM IRST
-//
-// * Created By : Parham Alvani (parham.alvani@gmail.com)
-// =======================================
+/*
+ * In The Name Of God
+ * ========================================
+ * [] File Name : descriptor_tables.c
+ *
+ * [] Creation Date : 27-12-2014
+ *
+ * [] Last Modified : Sat 27 Dec 2014 03:31:19 AM IRST
+ *
+ * [] Created By : Parham Alvani (parham.alvani@gmail.com)
+ * =======================================
+*/
 #include "common.h"
 #include "descriptor_tables.h"
 
@@ -58,7 +60,7 @@ static void gdt_set_gate(int32_t num, uint32_t base, uint32_t limit, uint8_t acc
 
     	gdt_entries[num].limit_low   = (limit & 0xFFFF);
     	gdt_entries[num].granularity = (limit >> 16) & 0x0F;
-    
+
     	gdt_entries[num].granularity |= gran & 0xF0;
     	gdt_entries[num].access      = access;
 }
@@ -67,7 +69,7 @@ static void init_idt(){
     	idt_ptr.limit = sizeof(idt_entry_t) * 256 -1;
     	idt_ptr.base  = (uint32_t)&idt_entries;
 
-    	memset(&idt_entries, 0, sizeof(idt_entry_t)*256);
+    	memset(&idt_entries, 0, sizeof(idt_entry_t) * 256);
 	
 	// Remap the irq table.
 	outb(0x20, 0x11);

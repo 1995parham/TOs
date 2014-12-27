@@ -1,13 +1,15 @@
-// In The Name Of God
-// ========================================
-// * File Name : timer.h
-// 
-// * Creation Date : 01-12-2014
-//
-// * Last Modified : Tue 02 Dec 2014 12:53:13 AM IRST
-//
-// * Created By : Parham Alvani (parham.alvani@gmail.com)
-// =======================================
+/*
+ * In The Name Of God
+ * ========================================
+ * [] File Name : timer.h
+ *
+ * [] Creation Date : 27-12-2014
+ *
+ * [] Last Modified : Sat 27 Dec 2014 03:27:53 AM IRST
+ *
+ * [] Created By : Parham Alvani (parham.alvani@gmail.com)
+ * =======================================
+*/
 #ifndef TIMER_H
 #define TIMER_H
 
