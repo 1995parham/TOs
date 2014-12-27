@@ -1,13 +1,15 @@
-// In The Name Of God
-// ========================================
-// * File Name : monitor.h
-// 
-// * Creation Date : 01-12-2014
-//
-// * Last Modified : Tue 02 Dec 2014 12:51:04 AM IRST
-//
-// * Created By : Parham Alvani (parham.alvani@gmail.com)
-// =======================================
+/*
+ * In The Name Of God
+ * ========================================
+ * [] File Name : monitor.h
+ *
+ * [] Creation Date : 27-12-2014
+ *
+ * [] Last Modified : Sat 27 Dec 2014 03:27:52 AM IRST
+ *
+ * [] Created By : Parham Alvani (parham.alvani@gmail.com)
+ * =======================================
+*/
 #ifndef MONITOR_H
 #define MONITOR_H
 

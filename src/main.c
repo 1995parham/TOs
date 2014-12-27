@@ -1,13 +1,15 @@
-// In The Name Of God
-// ========================================
-// * File Name : main-h.c
-// 
-// * Creation Date : 01-12-2014
-//
-// * Last Modified : Tue 16 Dec 2014 02:08:24 AM IRST
-//
-// * Created By : Parham Alvani (parham.alvani@gmail.com)
-// =======================================
+/*
+ * In The Name Of God
+ * ========================================
+ * [] File Name : main.c
+ *
+ * [] Creation Date : 27-12-2014
+ *
+ * [] Last Modified : Sat 27 Dec 2014 03:29:46 AM IRST
+ *
+ * [] Created By : Parham Alvani (parham.alvani@gmail.com)
+ * =======================================
+*/
 #include "monitor.h"
 #include "descriptor_tables.h"
 #include "timer.h"
