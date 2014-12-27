@@ -4,7 +4,7 @@
 ; 
 ; * Creation Date : 01-12-2014
 ;
-; * Last Modified : Mon 01 Dec 2014 08:47:01 PM IRST
+; * Last Modified : Sat 27 Dec 2014 03:59:28 AM IRST
 ;
 ; * Created By : Parham Alvani (parham.alvani@gmail.com)
 ; =======================================
@@ -13,6 +13,7 @@ BITS 32
 section .text
 	global outb
 	global inb
+	global inw
 outb:
 	push ebp
 	mov ebp, esp
