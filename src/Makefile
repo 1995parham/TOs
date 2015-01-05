@@ -8,10 +8,9 @@ all: $(SOURCES) link
 
 clean:
 	-rm *.o kernel
-
 link:
 	ld $(LDFLAGS) -o kernel $(SOURCES)
-
+# GNU make cannot compile assembly files with nasm explicitly
 boot.o:
 	nasm $(ASFLAGS) boot.asm
 common.asm.o:

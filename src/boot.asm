@@ -4,7 +4,7 @@
 ; 
 ; * Creation Date : 01-12-2014
 ;
-; * Last Modified : Tue 02 Dec 2014 12:24:52 AM IRST
+; * Last Modified : Mon 05 Jan 2015 04:46:11 PM IRST
 ;
 ; * Created By : Parham Alvani (parham.alvani@gmail.com)
 ; =======================================
@@ -32,7 +32,7 @@ mboot:
                                 ; 4-byte boundary in your kernel file
   dd  MBOOT_HEADER_FLAGS        ; How GRUB should load your file / settings
   dd  MBOOT_CHECKSUM            ; To ensure that the above values are correct
-   
+
   dd  mboot                     ; Location of this descriptor
   dd  code                      ; Start of kernel '.text' (code) section.
   dd  bss                       ; End of kernel '.data' section.

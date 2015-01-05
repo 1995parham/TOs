@@ -5,21 +5,22 @@
  *
  * [] Creation Date : 27-12-2014
  *
- * [] Last Modified : Sat 27 Dec 2014 03:27:55 AM IRST
+ * [] Last Modified : Mon 05 Jan 2015 04:48:58 PM IRST
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
 */
 #include "monitor.h"
 
-// The VGA framebuffer starts at 0xB8000.
+/* The VGA framebuffer starts at 0xB8000. */
 uint16_t *video_memory = (uint16_t *)0xB8000;
-// Stores the cursor position.
+/* Stores the cursor position. */
 uint8_t cursor_x = 0;
 uint8_t cursor_y = 0;
 
 // Updates the hardware cursor.
-static void move_cursor(){
+static void move_cursor(void)
+{
     	// The screen is 80 characters wide...
     	uint16_t cursorLocation = cursor_y * 80 + cursor_x;
     	outb(0x3D4, 14);                  // Tell the VGA board we are setting the high cursor byte.
@@ -32,8 +33,8 @@ static void move_cursor(){
 static void scroll(){
 
     	// Get a space character with the default colour attributes.
-    	uint8_t attributeByte = (0 /*black*/ << 4) | (15 /*white*/ & 0x0F);
-    	uint16_t blank = 0x20 /* space */ | (attributeByte << 8);
+	uint8_t attributeByte = (0 /*black*/ << 4) | (15 /*white*/ & 0x0F);
+	uint16_t blank = 0x20 /* space */ | (attributeByte << 8);
 
     	// Row 25 is the end, this means we need to scroll up
     	if(cursor_y >= 25){
