@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 27-12-2014
  *
- * [] Last Modified : Tue 06 Jan 2015 04:34:11 AM IRST
+ * [] Last Modified : Tue 06 Jan 2015 09:12:49 AM IRST
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -18,17 +18,17 @@
 /*
  * Write a single character out to the screen.
 */
-void monitor_put(char c);
+void putc(char c);
 
 /*
  * Clear the screen to all black.
 */
-void monitor_clear();
+void cls(void);
 
 /*
  * Output a null-terminated ASCII string to the monitor.
 */
-void monitor_write(char *c);
+void puts(char *c);
 
 void monitor_write_hex(uint32_t n);
 

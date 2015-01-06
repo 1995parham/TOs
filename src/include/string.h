@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 06-01-2015
  *
- * [] Last Modified : Tue 06 Jan 2015 04:55:49 AM IRST
+ * [] Last Modified : Tue 06 Jan 2015 08:46:02 AM IRST
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -23,6 +23,8 @@ typedef unsigned int size_t;
 #endif
 
 extern char *strerror(int errno);
+
+size_t strnlen(const char *s, size_t maxlen);
 
 /*
  * This string-include defines all string functions as inline
@@ -272,7 +274,7 @@ __asm__("cld\n\t" \
 return __res;
 }
 
-extern inline int strlen(const char *s)
+extern inline size_t strlen(const char *s)
 {
 register int __res ;
 __asm__("cld\n\t"
