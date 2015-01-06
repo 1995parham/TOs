@@ -5,12 +5,12 @@
  *
  * [] Creation Date : 27-12-2014
  *
- * [] Last Modified : Sat 27 Dec 2014 04:24:41 AM IRST
+ * [] Last Modified : Tue 06 Jan 2015 04:34:50 AM IRST
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
 */
-#include "common.h"
+#include <stdint.h>
 
 /*
  * Initialisation function is publicly accessible.

@@ -5,16 +5,16 @@
  *
  * [] Creation Date : 27-12-2014
  *
- * [] Last Modified : Sat 27 Dec 2014 03:27:51 AM IRST
+ * [] Last Modified : Tue 06 Jan 2015 04:52:20 AM IRST
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
 */
 #ifndef ISR_H
 #define ISR_H
-#include "common.h"
+#include <stdint.h>
 
-// A few defines to make life a little easier
+/* A few defines to make life a little easier */
 #define IRQ0 32
 #define IRQ1 33
 #define IRQ2 34
@@ -32,16 +32,33 @@
 #define IRQ14 46
 #define IRQ15 47
 
-typedef struct registers{
-	uint32_t ds;                  // Data segment selector
-    	uint32_t edi, esi, ebp, esp, ebx, edx, ecx, eax; // Pushed by pusha.
-    	uint32_t int_no, err_code;    // Interrupt number and error code (if applicable)
-    	uint32_t eip, cs, eflags, useresp, ss; // Pushed by the processor automatically.
+/*
+ * @ds: Data segment selector
+ *
+ * @edi, esi, ebp, esp, ebx, edx, ecx, eax:
+ * Pushed by pusha
+ *
+ * @int_no: Interrupt number
+ *
+ * @err_code: Error code
+ *
+ * @eip, cs, eflags, user_esp, ss:
+ * Pushed by processor automatically
+*/
+typedef struct registers {
+	uint32_t ds;
+	uint32_t edi, esi, ebp, esp, ebx, edx, ecx, eax;
+	uint32_t int_no, err_code;
+	uint32_t eip, cs, eflags, useresp, ss;
 } registers_t;
 
-// Enables registration of callbacks for interrupts or IRQs.
-// For IRQs, to ease confusion, use the #defines above as the
-// first parameter.
+/*
+ * Enables registration of callbacks for interrupts or IRQs.
+ * For IRQs, to ease confusion, use the #defines above as the
+ * first parameter.
+*/
 typedef void (*isr_t)(registers_t);
+
 void register_interrupt_handler(uint8_t n, isr_t handler);
+
 #endif
