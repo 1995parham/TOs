@@ -5,15 +5,15 @@
  *
  * [] Creation Date : 27-12-2014
  *
- * [] Last Modified : Tue 06 Jan 2015 04:48:29 AM IRST
+ * [] Last Modified : Tue 06 Jan 2015 09:05:41 AM IRST
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
 */
 #include <stdint.h>
 #include <asm/io.h>
+#include <monitor.h>
 #include "isr.h"
-#include "monitor.h"
 
 isr_t interrupt_handlers[256];
 
@@ -27,9 +27,9 @@ void register_interrupt_handler(uint8_t n, isr_t handler)
 */
 void isr_handler(registers_t regs)
 {
-	monitor_write("recieved interrupt: ");
+	puts("recieved interrupt: ");
 	monitor_write_dec(regs.int_no);
-	monitor_put('\n');
+	putc('\n');
 
 	if (interrupt_handlers[regs.int_no] != 0) {
 		isr_t handler = interrupt_handlers[regs.int_no];

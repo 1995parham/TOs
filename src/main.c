@@ -5,31 +5,34 @@
  *
  * [] Creation Date : 27-12-2014
  *
- * [] Last Modified : Sat 27 Dec 2014 03:29:46 AM IRST
+ * [] Last Modified : Tue 06 Jan 2015 09:32:52 AM IRST
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
 */
-#include "monitor.h"
+#include <multiboot.h>
+#include <monitor.h>
+#include <stdio.h>
 #include "descriptor_tables.h"
 #include "timer.h"
-#include "multiboot.h"
 #include "sound.h"
 
 int main(multiboot_info_t *mboot_ptr) {
-	monitor_clear();
+	cls();
 
-	monitor_write("Welcome to TOs(Tiny OS) written by\n");
-	monitor_write("Parham Alvani(parham.alvani@gmail.com)\n");
-	monitor_write("Navid Mashayekhi(navidmsk@gmail.com)\n");
-	monitor_write("Mohammad Reza Mahboubi Ardakani(mrmahboubi@gmail.com)\n");
+	printf("Welcome to TOs(Tiny OS) written by\n");
+	printf("Parham Alvani(parham.alvani@gmail.com)\n");
+	printf("Navid Mashayekhi(navidmsk@gmail.com)\n");
+	printf("Mohammad Reza Mahboubi Ardakani(mrmahboubi@gmail.com)\n");
 	
+	printf("Memupper: %ld\n", mboot_ptr->mem_upper);
+	printf("Memlower: %ld\n", mboot_ptr->mem_lower);
+
 	init_descriptor_tables();
 	
 	asm volatile ("sti");
 	
 	init_timer(50);	//Initialise timer to 50Hz
-	init_exception();
 
 	beep();
 

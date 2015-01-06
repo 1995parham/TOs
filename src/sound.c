@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 27-12-2014
  *
- * [] Last Modified : Tue 06 Jan 2015 05:02:24 AM IRST
+ * [] Last Modified : Tue 06 Jan 2015 09:56:45 AM IRST
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -18,7 +18,8 @@
 /*
  * Play sound using built in speaker
 */
-static void play_sound(uint32_t nFrequence) {
+static void play_sound(uint32_t nFrequence)
+{
 	uint32_t Div;
 	uint8_t tmp;
 
@@ -38,7 +39,8 @@ static void play_sound(uint32_t nFrequence) {
 /*
  * make it shutup
 */
-static void nosound(){
+static void nosound(void)
+{
 	uint8_t tmp = inb(0x61) & 0xFC;
 	outb(0x61, tmp);
 }
@@ -46,7 +48,8 @@ static void nosound(){
 /*
  * Make a beep
 */
-void beep(){
+void beep(void)
+{
 	play_sound(1000);
 	timer_wait(10);
 	nosound();

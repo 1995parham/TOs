@@ -4,7 +4,7 @@
 ; 
 ; * Creation Date : 01-12-2014
 ;
-; * Last Modified : Mon 05 Jan 2015 04:46:11 PM IRST
+; * Last Modified : Tue 06 Jan 2015 09:31:59 AM IRST
 ;
 ; * Created By : Parham Alvani (parham.alvani@gmail.com)
 ; =======================================
@@ -28,26 +28,35 @@ extern bss                    	; Start of the .bss section.
 extern end                   	; End of the last loadable section.
 
 mboot:
-  dd  MBOOT_HEADER_MAGIC        ; GRUB will search for this value on each
-                                ; 4-byte boundary in your kernel file
-  dd  MBOOT_HEADER_FLAGS        ; How GRUB should load your file / settings
-  dd  MBOOT_CHECKSUM            ; To ensure that the above values are correct
 
-  dd  mboot                     ; Location of this descriptor
-  dd  code                      ; Start of kernel '.text' (code) section.
-  dd  bss                       ; End of kernel '.data' section.
-  dd  end                       ; End of kernel.
-  dd  start                     ; Kernel entry point (initial EIP).
+; typedef struct multiboot_header {
+;	unsigned long magic;
+; 	unsigned long flags;
+; 	unsigned long checksum;
+;	unsigned long header_addr;                                                                                                                                                              ; 	unsigned long load_addr;
+;	unsigned long load_end_addr;
+;	unsigned long bss_end_addr;
+;	unsigned long entry_addr;
+; } multiboot_header_t;
+
+dd  MBOOT_HEADER_MAGIC	
+dd  MBOOT_HEADER_FLAGS
+dd  MBOOT_CHECKSUM
+dd  mboot
+dd  code
+dd  bss
+dd  end
+dd  start
 
 global start                  	; Kernel entry point.
 extern main                   	; This is the entry point of our C code
 
 start:
-  push    ebx                   ; Load multiboot header location
+push ebx                   	; Load multiboot header location
 
-  ; Execute the kernel:
-  cli                         	; Disable interrupts.
-  call main                   	; call our main() function.
-  jmp $                       	; Enter an infinite loop, to stop the processor
+; Execute the kernel:
+cli                         	; Disable interrupts.
+call main                   	; call our main() function.
+jmp $                       	; Enter an infinite loop, to stop the processor
                               	; executing whatever rubbish is in the memory
                               	; after our kernel! 
