@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 27-12-2014
  *
- * [] Last Modified : Tue 06 Jan 2015 09:32:52 AM IRST
+ * [] Last Modified : Tue 06 Jan 2015 10:14:30 PM IRST
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -13,11 +13,14 @@
 #include <multiboot.h>
 #include <monitor.h>
 #include <stdio.h>
+#include <kernel.h>
+#include <kmalloc.h>
 #include "descriptor_tables.h"
 #include "timer.h"
 #include "sound.h"
 
-int main(multiboot_info_t *mboot_ptr) {
+int main(multiboot_info_t *mboot_ptr)
+{
 	cls();
 
 	printf("Welcome to TOs(Tiny OS) written by\n");
@@ -27,6 +30,10 @@ int main(multiboot_info_t *mboot_ptr) {
 	
 	printf("Memupper: %ld\n", mboot_ptr->mem_upper);
 	printf("Memlower: %ld\n", mboot_ptr->mem_lower);
+	
+	printf("Kernel End @ %x\n", &end);
+	printf("Are allocation done @ %x\n", kmalloc(1));
+
 
 	init_descriptor_tables();
 	
