@@ -5,12 +5,15 @@
  *
  * [] Creation Date : 27-12-2014
  *
- * [] Last Modified : Sat 27 Dec 2014 03:31:19 AM IRST
+ * [] Last Modified : Tue 06 Jan 2015 04:59:40 AM IRST
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
 */
-#include "common.h"
+#include <stdint.h>
+#include <asm/io.h>
+#include <string.h>
+#include "gdt.h"
 #include "descriptor_tables.h"
 
 // Lets us access our ASM functions from our C code.
@@ -43,11 +46,11 @@ static void init_gdt(){
     	gdt_ptr.limit = (sizeof(gdt_entry_t) * 5) - 1;
     	gdt_ptr.base  = (uint32_t)&gdt_entries;
 
-    	gdt_set_gate(0, 0, 0, 0, 0);                // Null segment
-    	gdt_set_gate(1, 0, 0xFFFFFFFF, 0x9A, 0xCF); // Code segment
-    	gdt_set_gate(2, 0, 0xFFFFFFFF, 0x92, 0xCF); // Data segment
-    	gdt_set_gate(3, 0, 0xFFFFFFFF, 0xFA, 0xCF); // User mode code segment
-    	gdt_set_gate(4, 0, 0xFFFFFFFF, 0xF2, 0xCF); // User mode data segment
+    	gdt_set_gate(0, 0, 0, 0, 0);                /* Null segment */
+    	gdt_set_gate(1, 0, 0xFFFFFFFF, 0x9A, 0xCF); /* Code segment */
+    	gdt_set_gate(2, 0, 0xFFFFFFFF, 0x92, 0xCF); /* Data segment */
+    	gdt_set_gate(3, 0, 0xFFFFFFFF, 0xFA, 0xCF); /* User mode code segment */
+    	gdt_set_gate(4, 0, 0xFFFFFFFF, 0xF2, 0xCF); /* User mode data segment */
 
     	gdt_flush((uint32_t)&gdt_ptr);
 }
