@@ -5,14 +5,14 @@
  *
  * [] Creation Date : 27-12-2014
  *
- * [] Last Modified : Tue 06 Jan 2015 09:05:41 AM IRST
+ * [] Last Modified : Wed 07 Jan 2015 03:56:57 AM IRST
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
 */
 #include <stdint.h>
 #include <asm/io.h>
-#include <monitor.h>
+#include <stdio.h>
 #include "isr.h"
 
 isr_t interrupt_handlers[256];
@@ -27,10 +27,9 @@ void register_interrupt_handler(uint8_t n, isr_t handler)
 */
 void isr_handler(registers_t regs)
 {
-	puts("recieved interrupt: ");
-	monitor_write_dec(regs.int_no);
-	putc('\n');
+	printf("Recieved interrupt: %d\n", regs.int_no);
 
+	/* If we have a handler, we call it !! */
 	if (interrupt_handlers[regs.int_no] != 0) {
 		isr_t handler = interrupt_handlers[regs.int_no];
 
@@ -54,6 +53,7 @@ void irq_handler(registers_t regs)
 	/* Send reset signal to master. (As well as slave, if necessary). */
 	outb(0x20, 0x20);
 
+	/* If we have a handler, we call it !! */
 	if (interrupt_handlers[regs.int_no] != 0) {
 		isr_t handler = interrupt_handlers[regs.int_no];
 
