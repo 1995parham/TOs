@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 06-01-2015
  *
- * [] Last Modified : Tue 06 Jan 2015 10:10:33 PM IRST
+ * [] Last Modified : Tue 06 Jan 2015 10:16:55 PM IRST
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -15,19 +15,15 @@
 
 #include <stdint.h>
 
-/*
- * kernel code start address
-*/
+/* Kernel labels, use them with & for address. */
+
+/* kernel code start address */
 extern uint32_t code;
 
-/*
- * kernel bss end address
-*/
+/* kernel bss end address */
 extern uint32_t end;
 
-/*
- * kernel entry point address
-*/
+/* kernel entry point address */
 extern uint32_t start;
 
 #endif

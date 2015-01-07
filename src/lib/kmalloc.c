@@ -1,3 +1,15 @@
+/*
+ * In The Name Of God
+ * ========================================
+ * [] File Name : kmalloc.c
+ *
+ * [] Creation Date : 07-01-2015
+ *
+ * [] Last Modified : Wed 07 Jan 2015 03:47:59 AM IRST
+ *
+ * [] Created By : Parham Alvani (parham.alvani@gmail.com)
+ * =======================================
+*/
 #include <kmalloc.h>
 #include <stdint.h>
 #include <kernel.h>
