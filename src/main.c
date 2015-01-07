@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 27-12-2014
  *
- * [] Last Modified : Tue 06 Jan 2015 10:14:30 PM IRST
+ * [] Last Modified : Tue 06 Jan 2015 10:59:22 PM IRST
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -31,7 +31,8 @@ int main(multiboot_info_t *mboot_ptr)
 	printf("Memupper: %ld\n", mboot_ptr->mem_upper);
 	printf("Memlower: %ld\n", mboot_ptr->mem_lower);
 	
-	printf("Kernel End @ %x\n", &end);
+	printf("Kernel code start @ %x\n", &code);
+	printf("Kernel end @ %x\n", &end);
 	printf("Are allocation done @ %x\n", kmalloc(1));
 
 
