@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 27-12-2014
  *
- * [] Last Modified : Tue 06 Jan 2015 10:59:22 PM IRST
+ * [] Last Modified : Wed 07 Jan 2015 04:10:12 AM IRST
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -18,6 +18,7 @@
 #include "descriptor_tables.h"
 #include "timer.h"
 #include "sound.h"
+#include "exception.h"
 
 int main(multiboot_info_t *mboot_ptr)
 {
@@ -40,7 +41,9 @@ int main(multiboot_info_t *mboot_ptr)
 	
 	asm volatile ("sti");
 	
-	init_timer(50);	//Initialise timer to 50Hz
+	init_exception();
+	/* Initialise timer to 50Hz */
+	init_timer(50);	
 
 	beep();
 
