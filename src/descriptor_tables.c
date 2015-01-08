@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 27-12-2014
  *
- * [] Last Modified : Tue 06 Jan 2015 04:59:40 AM IRST
+ * [] Last Modified : Thu 08 Jan 2015 10:30:19 AM IRST
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -138,7 +138,8 @@ static void init_idt(){
     	idt_flush((uint32_t)&idt_ptr);
 }
 
-static void idt_set_gate(uint8_t num, uint32_t base, uint16_t sel, uint8_t flags){
+static void idt_set_gate(uint8_t num, uint32_t base, uint16_t sel, uint8_t flags)
+{
     	idt_entries[num].base_low = base & 0xFFFF;
     	idt_entries[num].base_high = (base >> 16) & 0xFFFF;
 
