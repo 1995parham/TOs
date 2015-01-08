@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 27-12-2014
  *
- * [] Last Modified : Thu 08 Jan 2015 03:30:21 AM IRST
+ * [] Last Modified : Thu 08 Jan 2015 09:29:59 AM IRST
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -68,6 +68,7 @@ typedef struct gdt_entry_struct gdt_entry_t;
  * our array of GDT entries, and is in the format required by the
  * lgdt instruction.
  * @limit: The upper 16 bits of all selector limits.
+ *
  * @base: The address of the first gdt_entry_t struct.
 */
 struct gdt_ptr_struct {
@@ -82,8 +83,11 @@ typedef struct gdt_ptr_struct gdt_ptr_t;
  * @base_low: The lower 16 bits of the address to jump to when this
  * interrupt fires.
  * @sel: Kernel segment selector
+ *
  * @always0: This must always be zero ;-)
+ *
  * @flags: More flags. See documentation.
+ *
  * @base_high: The upper 16 bits of the address to jump to.
 */
 struct idt_entry_struct {
