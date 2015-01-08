@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 27-12-2014
  *
- * [] Last Modified : Tue 06 Jan 2015 04:34:50 AM IRST
+ * [] Last Modified : Thu 08 Jan 2015 03:30:21 AM IRST
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -22,10 +22,14 @@ void init_descriptor_tables(void);
  * We use the attribute 'packed' to tell GCC not to change
  * any of the alignment in the structure.
  * @limit_low: The lower 16 bits of the limit.
+ *
  * @base_low: The lower 16 bits of the base.
+ *
  * @base_middle: The next 8 bits of the base.
+ *
  * @access: Access flags, determine what ring this segment
  * can be used in.
+ *
  * @base_high: The last 8 bits of the base.
 */
 struct gdt_entry_struct {
