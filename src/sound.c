@@ -5,13 +5,13 @@
  *
  * [] Creation Date : 27-12-2014
  *
- * [] Last Modified : Fri 09 Jan 2015 09:25:10 AM IRST
+ * [] Last Modified : Fri 09 Jan 2015 06:31:45 PM IRST
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
 */
 #include <stdint.h>
-#include <asm/io.h>
+#include <io.h>
 #include "sound.h"
 #include "timer.h"
 

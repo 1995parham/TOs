@@ -5,13 +5,13 @@
  *
  * [] Creation Date : 27-12-2014
  *
- * [] Last Modified : Fri 09 Jan 2015 06:34:41 AM IRST
+ * [] Last Modified : Fri 09 Jan 2015 06:32:03 PM IRST
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
 */
 #include <monitor.h>
-#include <asm/io.h>
+#include <io.h>
 
 /* The VGA framebuffer starts at 0xB8000. */
 uint16_t *video_memory = (uint16_t *)0xB8000;
