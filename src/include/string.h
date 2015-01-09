@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 06-01-2015
  *
- * [] Last Modified : Tue 06 Jan 2015 08:46:02 AM IRST
+ * [] Last Modified : Fri 09 Jan 2015 08:53:18 AM IRST
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -38,45 +38,126 @@ size_t strnlen(const char *s, size_t maxlen);
  *		(C) 1991 Linus Torvalds
 */
 
+/*
+ * R General register (EAX, EBX, ECX, EDX, ESI, EDI, EBP, ESP)
+ * q General register for data (EAX, EBX, ECX, EDX)
+ * f Floating-point register
+ * t Top floating-point register
+ * u Second-from-top floating-point register
+ * a EAX register
+ * b EBX register
+ * c ECX register
+ * d EDX register
+ * x SSE register (Streaming SIMD Extension register)
+ * y MMX multimedia registers
+ * A An 8-byte value formed from EAX and EDX
+ * D Destination pointer for string operations (EDI)
+ * S Source pointer for string operations (ESI)
+*/
+
+/*
+ *  asm ( assembler template
+ *	: output operands                  * optional *
+ *	: input operands                   * optional *
+ *	: list of clobbered registers      * optional *
+ *	);
+ *	There are two %’s prefixed to the register name.
+ *	This helps GCC to distinguish between the operands and registers.
+ *	operands have a single % as prefix.
+ *	The clobbered register %eax after the third colon tells GCC that
+ *	the value of %eax is to be modified inside "asm", so GCC won’t use
+ *	this register to store any other value.
+*/
+
+/*
+ * NASM:
+ *	cld
+ *	mov si, src
+ *	mov di, dest
+ * .loop:
+ *	lodsb
+ *	stosb
+ *	test al, al
+ *	jnz .loop
+*/
 extern inline char *strcpy(char *dest, const char *src)
 {
-__asm__("cld\n"
-	"1:\tlodsb\n\t"
-	"stosb\n\t"
-	"testb %%al,%%al\n\t"
-	"jne 1b"
-	::"S" (src), "D" (dest));
-return dest;
+	__asm__("cld\n"
+		"1:\tlodsb\n\t"
+		"stosb\n\t"
+		"testb %%al,%%al\n\t"
+		"jne 1b"
+		: /* no output registers */
+		: "S" (src), "D" (dest)
+		: "%eal"
+		);
+	return dest;
 }
 
+/*
+ * NASM:
+ *	cld
+ *	mov si, src
+ *	mov di, dest
+ *	mov cx, count
+ * .loop:
+ *	dec cx
+ *	js .end
+ *	lodsb
+ *	stosb
+ *	test al, al
+ *	jne .loop
+ *	rep stosb
+ * .end:
+*/
 static inline char *strncpy(char *dest, const char *src, int count)
 {
-__asm__("cld\n"
-	"1:\tdecl %2\n\t"
-	"js 2f\n\t"
-	"lodsb\n\t"
-	"stosb\n\t"
-	"testb %%al,%%al\n\t"
-	"jne 1b\n\t"
-	"rep\n\t"
-	"stosb\n"
-	"2:"
-	::"S" (src),"D" (dest),"c" (count));
-return dest;
+	__asm__("cld\n"
+		"1:\tdecl %2\n\t"
+		"js 2f\n\t"
+		"lodsb\n\t"
+		"stosb\n\t"
+		"testb %%al,%%al\n\t"
+		"jne 1b\n\t"
+		"rep\n\t"
+		"stosb\n"
+		"2:"
+		:
+		: "S" (src),"D" (dest),"c" (count)
+		: "%al"
+		);
+	return dest;
 }
 
+/*
+ * NASM:
+ *	cld
+ *	mov si, src
+ *	mov di, dest
+ *	mov ax, 0
+ *	mov cx, 0xffffffff
+ *	repne scasb
+ *	dec di
+ * .loop:
+ *	lodsb
+ *	stosb
+ *	test al, al
+ *	jne .loop
+*/
 extern inline char *strcat(char *dest, const char *src)
 {
-__asm__("cld\n\t"
-	"repne\n\t"
-	"scasb\n\t"
-	"decl %1\n"
-	"1:\tlodsb\n\t"
-	"stosb\n\t"
-	"testb %%al,%%al\n\t"
-	"jne 1b"
-	::"S" (src),"D" (dest),"a" (0),"c" (0xffffffff));
-return dest;
+	__asm__("cld\n\t"
+		"repne\n\t"
+		"scasb\n\t"
+		"decl %1\n"
+		"1:\tlodsb\n\t"
+		"stosb\n\t"
+		"testb %%al,%%al\n\t"
+		"jne 1b"
+		:
+		: "S" (src),"D" (dest),"a" (0),"c" (0xffffffff)
+		);
+	return dest;
 }
 
 static inline char *strncat(char *dest, const char *src, int count)
