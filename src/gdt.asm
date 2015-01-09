@@ -4,11 +4,14 @@
 ;
 ; * Creation Date : 01-12-2014
 ;
-; * Last Modified : Tue 06 Jan 2015 04:44:31 AM IRST
+; * Last Modified : Fri 09 Jan 2015 01:20:40 PM IRST
 ;
 ; * Created By : Parham Alvani (parham.alvani@gmail.com)
 ; =======================================
+BITS 32
+section .text
 global gdt_flush    	  ; Allows the C code to call gdt_flush().
+
 gdt_flush:
     	mov eax, [esp+4]  ; Get the pointer to the GDT, passed as a parameter.
     	lgdt [eax]        ; Load the new GDT pointer
