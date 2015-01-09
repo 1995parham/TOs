@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 27-12-2014
  *
- * [] Last Modified : Wed 07 Jan 2015 04:10:12 AM IRST
+ * [] Last Modified : Fri 09 Jan 2015 06:01:59 PM IRST
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -15,6 +15,7 @@
 #include <stdio.h>
 #include <kernel.h>
 #include <kmalloc.h>
+#include <string.h>
 #include "descriptor_tables.h"
 #include "timer.h"
 #include "sound.h"
@@ -36,6 +37,7 @@ int main(multiboot_info_t *mboot_ptr)
 	printf("Kernel end @ %x\n", &end);
 	printf("Are allocation done @ %x\n", kmalloc(1));
 
+	printf("%u\n", strnlen("HELLLOWOLRDSDADASD", 1));
 
 	init_descriptor_tables();
 	

@@ -5,13 +5,13 @@
  *
  * [] Creation Date : 27-12-2014
  *
- * [] Last Modified : Thu 08 Jan 2015 10:30:19 AM IRST
+ * [] Last Modified : Fri 09 Jan 2015 06:31:11 PM IRST
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
 */
 #include <stdint.h>
-#include <asm/io.h>
+#include <io.h>
 #include <string.h>
 #include "gdt.h"
 #include "descriptor_tables.h"

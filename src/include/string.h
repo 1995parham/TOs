@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 06-01-2015
  *
- * [] Last Modified : Fri 09 Jan 2015 08:53:18 AM IRST
+ * [] Last Modified : Fri 09 Jan 2015 06:30:57 PM IRST
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -24,8 +24,6 @@ typedef unsigned int size_t;
 
 extern char *strerror(int errno);
 
-size_t strnlen(const char *s, size_t maxlen);
-
 /*
  * This string-include defines all string functions as inline
  * functions. Use gcc. It also assumes ds=es=data space, this should be
@@ -39,20 +37,33 @@ size_t strnlen(const char *s, size_t maxlen);
 */
 
 /*
- * R General register (EAX, EBX, ECX, EDX, ESI, EDI, EBP, ESP)
- * q General register for data (EAX, EBX, ECX, EDX)
- * f Floating-point register
- * t Top floating-point register
- * u Second-from-top floating-point register
- * a EAX register
- * b EBX register
- * c ECX register
- * d EDX register
- * x SSE register (Streaming SIMD Extension register)
- * y MMX multimedia registers
- * A An 8-byte value formed from EAX and EDX
- * D Destination pointer for string operations (EDI)
- * S Source pointer for string operations (ESI)
+ * [] R General register (EAX, EBX, ECX, EDX, ESI, EDI, EBP, ESP)
+ * [] q General register for data (EAX, EBX, ECX, EDX)
+ * [] f Floating-point register
+ * [] t Top floating-point register
+ * [] u Second-from-top floating-point register
+ * [] a EAX register
+ * [] b EBX register
+ * [] c ECX register
+ * [] d EDX register
+ * [] x SSE register (Streaming SIMD Extension register)
+ * [] y MMX multimedia registers
+ * [] A An 8-byte value formed from EAX and EDX
+ * [] D Destination pointer for string operations (EDI)
+ * [] S Source pointer for string operations (ESI)
+ * [] m A memory operand is allowed, with any kind of address
+ * that the machine supports in general.
+ * [] o A memory operand is allowed, but only if the address is offsettable.
+ * ie, adding a small offset to the address gives a valid address.
+ * [] V A memory operand that is not offsettable.
+ * In other words, anything that would fit the `m’ constraint but not the `o’constraint.
+ * [] i An immediate integer operand (one with constant value) is allowed.
+ * This includes symbolic constants whose values will be known only at assembly time.
+ * [] n An immediate integer operand with a known numeric value is allowed.
+ * Many systems cannot support assembly-time constants for operands less than a word wide.
+ * Constraints for these operands should use ’n’ rather than ’i’.
+ * [] g Any register, memory or immediate integer operand is allowed,
+ * except for registers that are not general registers.
 */
 
 /*
@@ -61,12 +72,12 @@ size_t strnlen(const char *s, size_t maxlen);
  *	: input operands                   * optional *
  *	: list of clobbered registers      * optional *
  *	);
- *	There are two %’s prefixed to the register name.
- *	This helps GCC to distinguish between the operands and registers.
- *	operands have a single % as prefix.
- *	The clobbered register %eax after the third colon tells GCC that
- *	the value of %eax is to be modified inside "asm", so GCC won’t use
- *	this register to store any other value.
+ * There are two %’s prefixed to the register name.
+ * This helps GCC to distinguish between the operands and registers.
+ * operands have a single % as prefix.
+ * The clobbered register %eax after the third colon tells GCC that
+ * the value of %eax is to be modified inside "asm", so GCC won’t use
+ * this register to store any other value.
 */
 
 /*
@@ -123,7 +134,7 @@ static inline char *strncpy(char *dest, const char *src, int count)
 		"stosb\n"
 		"2:"
 		:
-		: "S" (src),"D" (dest),"c" (count)
+		: "S" (src), "D" (dest), "c" (count)
 		: "%al"
 		);
 	return dest;
@@ -155,29 +166,52 @@ extern inline char *strcat(char *dest, const char *src)
 		"testb %%al,%%al\n\t"
 		"jne 1b"
 		:
-		: "S" (src),"D" (dest),"a" (0),"c" (0xffffffff)
+		: "S" (src), "D" (dest), "a" (0), "c" (0xffffffff)
 		);
 	return dest;
 }
 
+/*
+ * NASM:
+ *	cld
+ *	mov si, src
+ *	mov di, dest
+ *	mov ax, 0
+ *	mov cx, 0xffffffff
+ *	mov ?, count	; What ever gcc want !!!
+ *	repne scasb
+ *	dec di
+ *	mov cx, ?
+ * .loop:
+ *	dec cx
+ *	js .end
+ *	lodsb
+ *	stosb
+ *	test al, al
+ *	jne .loop
+ * .end:
+ *	xor ax, ax
+ *	stosb
+*/
 static inline char *strncat(char *dest, const char *src, int count)
 {
-__asm__("cld\n\t"
-	"repne\n\t"
-	"scasb\n\t"
-	"decl %1\n\t"
-	"movl %4,%3\n"
-	"1:\tdecl %3\n\t"
-	"js 2f\n\t"
-	"lodsb\n\t"
-	"stosb\n\t"
-	"testb %%al,%%al\n\t"
-	"jne 1b\n"
-	"2:\txorl %2,%2\n\t"
-	"stosb"
-	::"S" (src),"D" (dest),"a" (0),"c" (0xffffffff),"g" (count)
-	);
-return dest;
+	__asm__("cld\n\t"
+		"repne\n\t"
+		"scasb\n\t"
+		"decl %1\n\t"
+		"movl %4,%3\n"
+		"1:\tdecl %3\n\t"
+		"js 2f\n\t"
+		"lodsb\n\t"
+		"stosb\n\t"
+		"testb %%al,%%al\n\t"
+		"jne 1b\n"
+		"2:\txorl %2,%2\n\t"
+		"stosb"
+		:
+		: "S" (src), "D" (dest), "a" (0), "c" (0xffffffff), "g" (count)
+		);
+	return dest;
 }
 
 extern inline int strcmp(const char *cs, const char *ct)
@@ -355,77 +389,118 @@ __asm__("cld\n\t" \
 return __res;
 }
 
+/*
+ * NASM:
+ *	cld
+ *	mov di, s
+ *	mov ax, 0
+ *	mov cx, 0xffffffff
+ *	repne scasb
+ *	not cx
+ *	dec cx
+ *	mov __res, cx
+*/
 extern inline size_t strlen(const char *s)
 {
-register int __res ;
-__asm__("cld\n\t"
-	"repne\n\t"
-	"scasb\n\t"
-	"notl %0\n\t"
-	"decl %0"
-	:"=c" (__res):"D" (s),"a" (0),"0" (0xffffffff));
-return __res;
+	register int __res ;
+
+	__asm__("cld\n\t"
+		"repne\n\t"
+		"scasb\n\t"
+		"notl %0\n\t"
+		"decl %0"
+		: "=c" (__res)
+		: "D" (s), "a" (0), "0" (0xffffffff)
+		);
+	return __res;
+}
+
+/*
+ * NASM:
+ *	cld
+ *	mov di, s
+ *	mov ax, 0
+ *	mov cx, maxlen
+ *	repne scasb
+ *	neg cx
+ *	add cx, maxlen
+ *	mov __res, cx
+*/
+static inline size_t strnlen(const char *s, size_t maxlen)
+{
+	register int __res;
+
+	__asm__("cld\n\t"
+		"repne\n\t"
+		"scasb\n\t"
+		"negl %0\n\t"
+		"addl %4,%0"
+		: "=c" (__res)
+		: "D" (s), "a" (0), "0" (maxlen), "m" (maxlen)
+		);
+	return __res;
 }
 
 extern char *___strtok;
 
 extern inline char *strtok(char *s, const char *ct)
 {
-register char *__res ;
-__asm__("testl %1,%1\n\t"
-	"jne 1f\n\t"
-	"testl %0,%0\n\t"
-	"je 8f\n\t"
-	"movl %0,%1\n"
-	"1:\txorl %0,%0\n\t"
-	"movl $-1,%%ecx\n\t"
-	"xorl %%eax,%%eax\n\t"
-	"cld\n\t"
-	"movl %4,%%edi\n\t"
-	"repne\n\t"
-	"scasb\n\t"
-	"notl %%ecx\n\t"
-	"decl %%ecx\n\t"
-	"je 7f\n\t"			/* empty delimeter-string */
-	"movl %%ecx,%%edx\n"
-	"2:\tlodsb\n\t"
-	"testb %%al,%%al\n\t"
-	"je 7f\n\t"
-	"movl %4,%%edi\n\t"
-	"movl %%edx,%%ecx\n\t"
-	"repne\n\t"
-	"scasb\n\t"
-	"je 2b\n\t"
-	"decl %1\n\t"
-	"cmpb $0,(%1)\n\t"
-	"je 7f\n\t"
-	"movl %1,%0\n"
-	"3:\tlodsb\n\t"
-	"testb %%al,%%al\n\t"
-	"je 5f\n\t"
-	"movl %4,%%edi\n\t"
-	"movl %%edx,%%ecx\n\t"
-	"repne\n\t"
-	"scasb\n\t"
-	"jne 3b\n\t"
-	"decl %1\n\t"
-	"cmpb $0,(%1)\n\t"
-	"je 5f\n\t"
-	"movb $0,(%1)\n\t"
-	"incl %1\n\t"
-	"jmp 6f\n"
-	"5:\txorl %1,%1\n"
-	"6:\tcmpb $0,(%0)\n\t"
-	"jne 7f\n\t"
-	"xorl %0,%0\n"
-	"7:\ttestl %0,%0\n\t"
-	"jne 8f\n\t"
-	"movl %0,%1\n"
-	"8:"
-	:"=b" (__res),"=S" (___strtok)
-	:"0" (___strtok),"1" (s),"g" (ct)
-	);
-return __res;
+	register char *__res;
+	
+	__asm__("testl %1,%1\n\t"
+		"jne 1f\n\t"
+		"testl %0,%0\n\t"
+		"je 8f\n\t"
+		"movl %0,%1\n"
+		"1:\txorl %0,%0\n\t"
+		"movl $-1,%%ecx\n\t"
+		"xorl %%eax,%%eax\n\t"
+		"cld\n\t"
+		"movl %4,%%edi\n\t"
+		"repne\n\t"
+		"scasb\n\t"
+		"notl %%ecx\n\t"
+		"decl %%ecx\n\t"
+		"je 7f\n\t"			/* empty delimeter-string */
+		"movl %%ecx,%%edx\n"
+		"2:\tlodsb\n\t"
+		"testb %%al,%%al\n\t"
+		"je 7f\n\t"
+		"movl %4,%%edi\n\t"
+		"movl %%edx,%%ecx\n\t"
+		"repne\n\t"
+		"scasb\n\t"
+		"je 2b\n\t"
+		"decl %1\n\t"
+		"cmpb $0,(%1)\n\t"
+		"je 7f\n\t"
+		"movl %1,%0\n"
+		"3:\tlodsb\n\t"
+		"testb %%al,%%al\n\t"
+		"je 5f\n\t"
+		"movl %4,%%edi\n\t"
+		"movl %%edx,%%ecx\n\t"
+		"repne\n\t"
+		"scasb\n\t"
+		"jne 3b\n\t"
+		"decl %1\n\t"
+		"cmpb $0,(%1)\n\t"
+		"je 5f\n\t"
+		"movb $0,(%1)\n\t"
+		"incl %1\n\t"
+		"jmp 6f\n"
+		"5:\txorl %1,%1\n"
+		"6:\tcmpb $0,(%0)\n\t"
+		"jne 7f\n\t"
+		"xorl %0,%0\n"
+		"7:\ttestl %0,%0\n\t"
+		"jne 8f\n\t"
+		"movl %0,%1\n"
+		"8:"
+		: "=b" (__res), "=S" (___strtok)
+		: "0" (___strtok), "1" (s), "g" (ct)
+		);
+	return __res;
 }
 
 /*
