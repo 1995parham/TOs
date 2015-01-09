@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 27-12-2014
  *
- * [] Last Modified : Tue 06 Jan 2015 09:56:45 AM IRST
+ * [] Last Modified : Fri 09 Jan 2015 09:25:10 AM IRST
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -18,21 +18,26 @@
 /*
  * Play sound using built in speaker
 */
-static void play_sound(uint32_t nFrequence)
+static void play_sound(uint32_t frequency)
 {
-	uint32_t Div;
-	uint8_t tmp;
+	uint32_t divisor;
+	uint8_t PB;
 
-	/* Set the PIT to the desired frequency */
-	Div = 1193180 / nFrequence;
+	/* Set the PIT counter 2 to the desired frequency */
+	divisor = 1193180 / frequency;
 	outb(0x43, 0xb6);
-	outb(0x42, (uint8_t) (Div) );
-	outb(0x42, (uint8_t) (Div >> 8));
+	outb(0x42, (uint8_t) (divisor) );
+	outb(0x42, (uint8_t) (divisor >> 8));
 	
-	/* And play the sound using the PC speaker */
-	tmp = inb(0x61);
-	if (tmp != (tmp | 3)){
-		outb(0x61, tmp | 3);
+	/*
+	 * Turn the speaker on with setting PB0 and PB1 in
+	 * port 0x61
+	 *
+	 * 3 = 00000011
+	*/
+	PB = inb(0x61);
+	if (PB != (PB | 3)){
+		outb(0x61, PB | 3);
 	}
 }
 
@@ -41,8 +46,14 @@ static void play_sound(uint32_t nFrequence)
 */
 static void nosound(void)
 {
-	uint8_t tmp = inb(0x61) & 0xFC;
-	outb(0x61, tmp);
+	/*
+	 * Turn the speaker off with unsetting PB0 and PB1 in
+	 * port 0x61
+	 *
+	 * 0xFC = 11111100
+	*/
+	uint8_t PB = inb(0x61) & 0xFC;
+	outb(0x61, PB);
 }
 
 /*
