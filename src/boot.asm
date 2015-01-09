@@ -4,7 +4,7 @@
 ; 
 ; * Creation Date : 01-12-2014
 ;
-; * Last Modified : Tue 06 Jan 2015 09:31:59 AM IRST
+; * Last Modified : Thu 08 Jan 2015 01:34:09 PM IRST
 ;
 ; * Created By : Parham Alvani (parham.alvani@gmail.com)
 ; =======================================
@@ -52,11 +52,11 @@ global start                  	; Kernel entry point.
 extern main                   	; This is the entry point of our C code
 
 start:
-push ebx                   	; Load multiboot header location
+	push ebx                   	; Load multiboot header location
 
-; Execute the kernel:
-cli                         	; Disable interrupts.
-call main                   	; call our main() function.
-jmp $                       	; Enter an infinite loop, to stop the processor
-                              	; executing whatever rubbish is in the memory
-                              	; after our kernel! 
+	; Execute the kernel:
+	cli                         	; Disable interrupts.
+	call main                   	; call our main() function.
+	jmp $                       	; Enter an infinite loop, to stop the processor
+                              		; executing whatever rubbish is in the memory
+                              		; after our kernel! 
