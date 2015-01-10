@@ -5,13 +5,13 @@
  *
  * [] Creation Date : 06-01-2015
  *
- * [] Last Modified : Fri 09 Jan 2015 06:30:57 PM IRST
+ * [] Last Modified : Fri 09 Jan 2015 07:59:21 PM IRST
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
 */
-#ifndef _STRING_H_
-#define _STRING_H_
+#ifndef STRING_H
+#define STRING_H
 
 #ifndef NULL
 #define NULL ((void *) 0)
