@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 10-01-2015
  *
- * [] Last Modified : Sat 10 Jan 2015 10:40:07 PM IRST
+ * [] Last Modified : Sat 10 Jan 2015 10:59:50 PM IRST
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -30,7 +30,6 @@ struct page_directory *current_directory = 0;
 uint32_t *frames;
 uint32_t nframes;
 
-extern uint32_t placement_address;
 
 /*
  * Macros used in the bitset algorithms.
@@ -46,6 +45,7 @@ static void set_frame(uint32_t frame_addr)
 	uint32_t frame = frame_addr / 0x1000;
 	uint32_t idx = INDEX_FROM_BIT(frame);
 	uint32_t off = OFFSET_FROM_BIT(frame);
+
 	frames[idx] |= (0x1 << off);
 }
 
@@ -57,6 +57,7 @@ static void clear_frame(uint32_t frame_addr)
 	uint32_t frame = frame_addr / 0x1000;
 	uint32_t idx = INDEX_FROM_BIT(frame);
 	uint32_t off = OFFSET_FROM_BIT(frame);
+
 	frames[idx] &= ~(0x1 << off);
 }
 
@@ -68,6 +69,7 @@ static uint32_t test_frame(uint32_t frame_addr)
 	uint32_t frame = frame_addr / 0x1000;
 	uint32_t idx = INDEX_FROM_BIT(frame);
 	uint32_t off = OFFSET_FROM_BIT(frame);
+
 	return (frames[idx] & (0x1 << off));
 }
 
@@ -77,11 +79,13 @@ static uint32_t test_frame(uint32_t frame_addr)
 static uint32_t first_frame(void)
 {
 	uint32_t i, j;
+
 	for (i = 0; i < INDEX_FROM_BIT(nframes); i++) {
 		if (frames[i] != 0xFFFFFFFF) {
 			/* at least one bit is free here. */
 			for (j = 0; j < 32; j++) {
 				uint32_t toTest = 0x1 << j;
+
 				if (!(frames[i] & toTest))
 					return i * 4 * 8 + j;
 			}
@@ -99,6 +103,7 @@ void alloc_frame(struct page *page, int is_kernel, int is_writeable)
 		return;
 	} else {
 		uint32_t idx = first_frame();
+		
 		if (idx == (uint32_t) -1)
 			;
 			/* PANIC! no free frames!! */
@@ -146,6 +151,7 @@ void initialise_paging(void)
 	 * We need to identity map (phys addr = virt addr) from
 	 * 0x0 to the end of used memory, so we can access this
 	 * transparently, as if paging wasn't enabled.
+	 * WE ARE KERNEL !!! ;-))))
 	 * NOTE that we use a while loop here deliberately.
 	 * inside the loop body we actually change placement_address
 	 * by calling kmalloc(). A while loop causes this to be
@@ -167,17 +173,17 @@ void initialise_paging(void)
 void switch_page_directory(struct page_directory *dir)
 {
 	current_directory = dir;
-	asm volatile("mov %0,%%cr3"
+	__asm__("mov %0,%%cr3"
 		:
 		: "r" (&dir->tablesPhysical)
 		);
 	uint32_t cr0;
-	asm volatile("mov %%cr0,%0"
+	__asm__("mov %%cr0,%0"
 		: "=r" (cr0)
 		);
 	/* Enable paging! */
 	cr0 |= 0x80000000;
-	asm volatile("mov %0,%%cr0"
+	__asm__("mov %0,%%cr0"
 		:
 		: "r" (cr0)
 		);
@@ -196,7 +202,7 @@ struct page *get_page(uint32_t address, int make, struct page_directory *dir)
 		dir->tables[table_idx] = (struct page_table *)
 			kmalloc_ap(sizeof(struct page_table *), &tmp);
 		dir->tablesPhysical[table_idx] = tmp | 0x7; /* PRESENT, RW, US. */
-		return &dir->tables[table_idx]->pages[address%1024];
+		return &dir->tables[table_idx]->pages[address % 1024];
 	} else {
 		return 0;
 	}
@@ -210,7 +216,7 @@ void page_fault(registers_t regs)
 	* The faulting address is stored in the CR2 register.
 	*/
 	uint32_t faulting_address;
-	asm volatile("mov %%cr2,%0"
+	__asm__("mov %%cr2,%0"
 		: "=r" (faulting_address)
 		);
 	/* The error code gives us details of what happened. */
