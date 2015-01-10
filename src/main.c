@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 27-12-2014
  *
- * [] Last Modified : Fri 09 Jan 2015 06:01:59 PM IRST
+ * [] Last Modified : Sat 10 Jan 2015 10:41:54 PM IRST
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -20,6 +20,7 @@
 #include "timer.h"
 #include "sound.h"
 #include "exception.h"
+#include "paging.h"
 
 int main(multiboot_info_t *mboot_ptr)
 {
@@ -33,11 +34,8 @@ int main(multiboot_info_t *mboot_ptr)
 	printf("Memupper: %ld\n", mboot_ptr->mem_upper);
 	printf("Memlower: %ld\n", mboot_ptr->mem_lower);
 	
-	printf("Kernel code start @ %x\n", &code);
-	printf("Kernel end @ %x\n", &end);
-	printf("Are allocation done @ %x\n", kmalloc(1));
-
-	printf("%u\n", strnlen("HELLLOWOLRDSDADASD", 1));
+	printf("Kernel code start @ %p\n", &code);
+	printf("Kernel end @ %p\n", &end);
 
 	init_descriptor_tables();
 	
@@ -48,6 +46,9 @@ int main(multiboot_info_t *mboot_ptr)
 	init_timer(50);	
 
 	beep();
-
+	
+	initialise_paging();
+	printf("Hello, paging world!\n");
+	
 	return 0xDEADBABA;
 } 

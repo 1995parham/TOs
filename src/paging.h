@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 08-01-2015
  *
- * [] Last Modified : Thu 08 Jan 2015 08:59:25 AM IRST
+ * [] Last Modified : Sat 10 Jan 2015 10:26:37 PM IRST
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -60,7 +60,7 @@ struct page_table {
 */
 struct page_directory {
 	struct page_table *tables[TOTAL_TABLE];
-    	uint32_t tablesPhysical[1024];
+    	uint32_t tablesPhysical[TOTAL_TABLE];
     	uint32_t physicalAddr;
 };
 
@@ -81,7 +81,7 @@ void switch_page_directory(struct page_directory *new);
  * If make == 1, if the page-table in which this page should
  * reside isn't created, create it!
 */
-page_t *get_page(uint32_t address, int make, struct page_directory *dir);
+struct page *get_page(uint32_t address, int make, struct page_directory *dir);
 
 /*
  * Handler for page faults.
