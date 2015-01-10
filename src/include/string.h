@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 06-01-2015
  *
- * [] Last Modified : Fri 09 Jan 2015 07:59:21 PM IRST
+ * [] Last Modified : Sat 10 Jan 2015 10:36:40 PM IRST
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -214,44 +214,75 @@ static inline char *strncat(char *dest, const char *src, int count)
 	return dest;
 }
 
+/*
+ * NASM:
+ *	cld
+ *	mov di, cs
+ *	mov si, ct
+ * .loop:
+ *	lodsb
+ *	scasb
+ *	jne .not_equal
+ *	test al, al
+ *	jne .loop
+ *	xor al, al
+ *	jmp .end
+ * .not_equal:
+ *	mov ax, di
+ *	jl .end
+ *	neg ax
+ * .end:
+ *	mov __res, al
+*/
 extern inline int strcmp(const char *cs, const char *ct)
 {
-register int __res ;
-__asm__("cld\n"
-	"1:\tlodsb\n\t"
-	"scasb\n\t"
-	"jne 2f\n\t"
-	"testb %%al,%%al\n\t"
-	"jne 1b\n\t"
-	"xorl %%eax,%%eax\n\t"
-	"jmp 3f\n"
-	"2:\tmovl $1,%%eax\n\t"
-	"jl 3f\n\t"
-	"negl %%eax\n"
-	"3:"
-	:"=a" (__res):"D" (cs),"S" (ct));
-return __res;
+	register int __res ;
+	__asm__("cld\n"
+		"1:\tlodsb\n\t"
+		"scasb\n\t"
+		"jne 2f\n\t"
+		"testb %%al,%%al\n\t"
+		"jne 1b\n\t"
+		"xorl %%eax,%%eax\n\t"
+		"jmp 3f\n"
+		"2:\tmovl $1,%%eax\n\t"
+		"jl 3f\n\t"
+		"negl %%eax\n"
+		"3:"
+		: "=a" (__res)
+		: "D" (cs), "S" (ct)
+		);
+	return __res;
 }
 
+/*
+ * NASM:
+ *	cld
+ *	mov di, cs
+ *	mov si, ct
+ *	mov cx, count
+*/
 static inline int strncmp(const char *cs, const char *ct, int count)
 {
-register int __res ;
-__asm__("cld\n"
-	"1:\tdecl %3\n\t"
-	"js 2f\n\t"
-	"lodsb\n\t"
-	"scasb\n\t"
-	"jne 3f\n\t"
-	"testb %%al,%%al\n\t"
-	"jne 1b\n"
-	"2:\txorl %%eax,%%eax\n\t"
-	"jmp 4f\n"
-	"3:\tmovl $1,%%eax\n\t"
-	"jl 4f\n\t"
-	"negl %%eax\n"
-	"4:"
-	:"=a" (__res):"D" (cs),"S" (ct),"c" (count));
-return __res;
+	register int __res ;
+	__asm__("cld\n"
+		"1:\tdecl %3\n\t"
+		"js 2f\n\t"
+		"lodsb\n\t"
+		"scasb\n\t"
+		"jne 3f\n\t"
+		"testb %%al,%%al\n\t"
+		"jne 1b\n"
+		"2:\txorl %%eax,%%eax\n\t"
+		"jmp 4f\n"
+		"3:\tmovl $1,%%eax\n\t"
+		"jl 4f\n\t"
+		"negl %%eax\n"
+		"4:"
+		: "=a" (__res)
+		: "D" (cs), "S" (ct), "c" (count)
+		);
+	return __res;
 }
 
 static inline char *strchr(const char *s, char c)
@@ -567,14 +598,23 @@ __asm__("cld\n\t"
 return __res;
 }
 
+/*
+ * NASM:
+ *	cld
+ *	mov ax, c
+ *	mov si, s
+ *	mov cx, count
+ *	rep stosb
+*/
 static inline void *memset(void *s, char c, int count)
 {
-__asm__("cld\n\t"
-	"rep\n\t"
-	"stosb"
-	::"a" (c),"D" (s),"c" (count)
-	);
-return s;
+	__asm__("cld\n\t"
+		"rep\n\t"
+		"stosb"
+		:
+		: "a" (c),"D" (s),"c" (count)
+		);
+	return s;
 }
 
 #endif

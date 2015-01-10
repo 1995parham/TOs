@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 06-01-2015
  *
- * [] Last Modified : Tue 06 Jan 2015 10:05:58 PM IRST
+ * [] Last Modified : Sat 10 Jan 2015 10:56:29 PM IRST
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -14,6 +14,8 @@
 #define KMALLOC_H
 
 #include <stdint.h>
+
+extern uint32_t placement_address;
 
 /*
  * Allocate a chunk of memory, sz in size. If align == 1,
