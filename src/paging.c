@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 10-01-2015
  *
- * [] Last Modified : Sat 10 Jan 2015 10:59:50 PM IRST
+ * [] Last Modified : Sun 11 Jan 2015 11:00:18 AM IRST
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -200,7 +200,7 @@ struct page *get_page(uint32_t address, int make, struct page_directory *dir)
 	} else if (make) {
 		uint32_t tmp;
 		dir->tables[table_idx] = (struct page_table *)
-			kmalloc_ap(sizeof(struct page_table *), &tmp);
+			kmalloc_ap(sizeof(struct page_table), &tmp);
 		dir->tablesPhysical[table_idx] = tmp | 0x7; /* PRESENT, RW, US. */
 		return &dir->tables[table_idx]->pages[address % 1024];
 	} else {
