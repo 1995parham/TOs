@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 10-01-2015
  *
- * [] Last Modified : Sun 11 Jan 2015 11:00:18 AM IRST
+ * [] Last Modified : Mon 12 Jan 2015 03:00:36 PM IRST
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -173,20 +173,17 @@ void initialise_paging(void)
 void switch_page_directory(struct page_directory *dir)
 {
 	current_directory = dir;
-	__asm__("mov %0,%%cr3"
+	__asm__("movl %0,%%cr3"
 		:
 		: "r" (&dir->tablesPhysical)
 		);
-	uint32_t cr0;
-	__asm__("mov %%cr0,%0"
-		: "=r" (cr0)
-		);
-	/* Enable paging! */
-	cr0 |= 0x80000000;
-	__asm__("mov %0,%%cr0"
+	/* Enable paging !! */
+	__asm__("movl %%cr0,%%eax\n\t"
+		"orl $0x80000000, %%eax\n\t"
+		"movl %%eax, %%cr0"
 		:
-		: "r" (cr0)
-		);
+		:
+		:"%eax");
 }
 
 struct page *get_page(uint32_t address, int make, struct page_directory *dir)
