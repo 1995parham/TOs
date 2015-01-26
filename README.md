@@ -14,8 +14,9 @@ If you want, you can send me an [email](mailto:parham.alvani@gmail.com)
 I use bochs and qemu for test, so there is a shell script for these application and you can use them to run and test.
 
 #Special Thanks
-1. [Dr.Bakshi](mailto:bbakhshi@aut.ac.ir) : who learned me C
+1. [Dr.Bakhshi](mailto:bbakhshi@aut.ac.ir) : who learned me C
 2. [Dr.Payberah](mailto:amir@sics.se) : who learned me OS
-3. [Kamran Amini](mailto:kam.cpp@gmail.com) : who contributed in this project
-4. [Mohammad Reza Mahboubi Ardakani](mailto:mrmahboubi95@yahoo.com) : who contributed in this project
-5. [Navid Mashayekhi](mailto:mashayekhi.navid@yahoo.com) : who contributed in this project
+3. [Ahmad Asadi](ahmad.asadi.ir@gmail.com) : who contributed in this project
+4. [Kamran Amini](mailto:kam.cpp@gmail.com) : who contributed in this project
+5. [Mohammad Reza Mahboubi Ardakani](mailto:mrmahboubi95@yahoo.com) : who contributed in this project
+6. [Navid Mashayekhi](mailto:mashayekhi.navid@yahoo.com) : who contributed in this project
