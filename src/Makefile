@@ -12,7 +12,7 @@ LIB=lib/lib.a
 CFLAGS=-Wall -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector -Iinclude/
 LDFLAGS=-melf_i386 -Tlink.ld
 ASFLAGS=$(CFLAGS)
-ASMFLAGS=-felf32
+ASMFLAGS=-felf
 
 all: kernel
 
