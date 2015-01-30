@@ -11,7 +11,8 @@ OBJ=boot.o main.o descriptor_tables.o isr.o gdt.o interrupt.o timer.o sound.o ex
 LIB=lib/lib.a
 CFLAGS=-Wall -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector -Iinclude/
 LDFLAGS=-melf_i386 -Tlink.ld
-ASFLAGS=-felf32
+ASFLAGS=$(CFLAGS)
+ASMFLAGS=-felf32
 
 all: kernel
 
@@ -28,12 +29,10 @@ exception.o:
 paging.o: paging.h
 
 # GNU make cannot compile assembly files with nasm explicitly
-boot.o: boot.asm
-	nasm $(ASFLAGS) boot.asm
 gdt.o: gdt.asm gdt.h
-	nasm $(ASFLAGS) gdt.asm
+	nasm $(ASMFLAGS) gdt.asm
 interrupt.o: interrupt.asm
-	nasm $(ASFLAGS) interrupt.asm
+	nasm $(ASMFLAGS) interrupt.asm
 
 .PHONY: clean
 clean:

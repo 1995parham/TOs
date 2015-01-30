@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 27-12-2014
  *
- * [] Last Modified : Sat 10 Jan 2015 10:41:54 PM IRST
+ * [] Last Modified : Fri 30 Jan 2015 08:07:24 PM IRST
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -22,7 +22,7 @@
 #include "exception.h"
 #include "paging.h"
 
-int main(multiboot_info_t *mboot_ptr)
+int kmain(multiboot_info_t *mboot_ptr)
 {
 	cls();
 
