@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 06-01-2015
  *
- * [] Last Modified : Sat 10 Jan 2015 10:36:40 PM IRST
+ * [] Last Modified : Fri Jan 30 23:40:11 2015
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -100,7 +100,7 @@ extern inline char *strcpy(char *dest, const char *src)
 		"jne 1b"
 		: /* no output registers */
 		: "S" (src), "D" (dest)
-		: "%eal"
+		: "%al"
 		);
 	return dest;
 }
