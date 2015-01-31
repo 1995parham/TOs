@@ -8,7 +8,7 @@
 # =======================================
 OBJ=boot.o main.o descriptor_tables.o isr.o gdt.o interrupt.o timer.o sound.o exception.o \
     paging.o
-LIB=lib/lib.a
+LIB=lib/Tlibc.a
 CFLAGS=-Wall -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector -Iinclude/
 LDFLAGS=-melf_i386 -Tlink.ld
 ASFLAGS=$(CFLAGS)
@@ -18,8 +18,9 @@ all: kernel
 
 kernel: $(OBJ) $(LIB)
 	ld $(LDFLAGS) -o kernel $(OBJ) $(LIB)
-lib/lib.a:
-	make lib.a -C lib/
+lib/Tlibc.a:
+	make Tlibc.a -C lib/
+boot.o:
 main.o:
 descriptor_tables.o:
 isr.o:
