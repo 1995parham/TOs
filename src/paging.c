@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 10-01-2015
  *
- * [] Last Modified : Mon 12 Jan 2015 03:00:36 PM IRST
+ * [] Last Modified : Sat 31 Jan 2015 01:24:11 PM IRST
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -13,6 +13,9 @@
 #include <string.h>
 #include <kmalloc.h>
 #include <stdio.h>
+#include <stdint.h>
+
+#include "isr.h"
 #include "paging.h"
 
 /* The kernel's page directory */
