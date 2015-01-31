@@ -21,15 +21,16 @@ kernel: $(OBJ) $(LIB)
 lib/Tlibc.a:
 	make Tlibc.a -C lib/
 boot.o:
-main.o:
+main.o: descriptor_tables.h timer.h sound.h exception.h paging.h
 descriptor_tables.o:
 isr.o:
 timer.o:
 sound.o:
 exception.o:
-paging.o: paging.h
+paging.o: paging.h isr.h
 
 # GNU make cannot compile assembly files with nasm explicitly
+# TODO: change nasm syntax into gas syntax
 gdt.o: gdt.asm gdt.h
 	nasm $(ASMFLAGS) gdt.asm
 interrupt.o: interrupt.asm
