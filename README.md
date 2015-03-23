@@ -1,6 +1,5 @@
-TOs
-======
 #Tiny OS (TOs)
+
 ##Introduction
 *TOs (Tiny OS) kernel*, written just for fun.  
 In this project I use [JamesM's kernel development tutorials](http://www.jamesmolloy.co.uk/tutorial_html/index.html)  
@@ -23,4 +22,4 @@ I use bochs and qemu for test, so there is a shell script for these application 
 6. [Navid Mashayekhi](mailto:mashayekhi.navid@yahoo.com) : who has contributed to this project
 
 ##License
-*TOs* is free, open source and published under [GNU GENERAL PUBLIC LICENSE]().
+*TOs* is free, open source and published under [GNU GENERAL PUBLIC LICENSE](http://opensource.org/licenses/gpl-2.0).
