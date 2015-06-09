@@ -1,22 +1,21 @@
-TOs
-===
-#Introduction
-TOs (Tiny OS) kernel, written just for fun.  
-In this project I use [JamesM's kernel development tutorials](http://www.jamesmolloy.co.uk/tutorial_html/index.html)  
-The idea of this project is from my friends Navid Mashayekhi and Mohammad Reza Mahboubi Ardakani.  
-TOs originally supposed to be 64 bit kernel but until now it's just 32 bit kernel  
-TOs uses GRUB 1 for booting and follow the multiboot specification.
+##Tiny OS Kernel (TOs)
 
-#Contribution
-If you want, you can send me an [email](mailto:parham.alvani@gmail.com)
+###Introduction
+**Tiny OS Kernel (TOs)** is written just for fun. I'm making this kernel according to what I've learned from [JamesM's Kernel Development Tutorials](http://www.jamesmolloy.co.uk/tutorial_html/index.html). The idea of this project is from my friends Navid Mashayekhi and Mohammad Reza Mahboubi Ardakani. **TOs** was originally supposed to be a 64 bit kernel but until now, it is just a 32 bit kernel. **TOs** uses **GRUB 1.0** for booting and follows the multiboot specification.
 
-#Runing & Testing
-I use bochs and qemu for test, so there is a shell script for these application and you can use them to run and test.
+###Contribution
+If you want to contribute to this project, you can send an email to [parham.alvani@gmail.com](mailto:parham.alvani@gmail.com)
 
-#Special Thanks
+###Running and Testing
+I use **bochs** and **qemu** for emulation purposes. So, I've made a few shell scripts to start these emulators. You can find them under directory [scripts](https://github.com/1995parham/TOs/tree/master/script).  Once the emulator is started, you are free to run and test the **TOs**.
+
+###Special Thanks To
 1. [Dr.Bakhshi](mailto:bbakhshi@aut.ac.ir) : who taught me C
 2. [Dr.Payberah](mailto:amir@sics.se) : who taught me OS
-3. [Ahmad Asadi](ahmad.asadi.ir@gmail.com) : who contributed in this project
-4. [Kamran Amini](mailto:kam.cpp@gmail.com) : who contributed in this project
-5. [Mohammad Reza Mahboubi Ardakani](mailto:mrmahboubi95@yahoo.com) : who contributed in this project
-6. [Navid Mashayekhi](mailto:mashayekhi.navid@yahoo.com) : who contributed in this project
+3. [Ahmad Asadi](ahmad.asadi.ir@gmail.com) : who has contributed to this project
+4. [Kamran Amini](mailto:kam.cpp@gmail.com) : who has contributed to this project
+5. [Mohammad Reza Mahboubi Ardakani](mailto:mrmahboubi95@yahoo.com) : who has contributed to this project
+6. [Navid Mashayekhi](mailto:mashayekhi.navid@yahoo.com) : who has contributed to this project
+
+###License
+**TOs** is free, open source and published under [GNU GENERAL PUBLIC LICENSE](http://opensource.org/licenses/gpl-2.0).
