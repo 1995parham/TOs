@@ -3,12 +3,13 @@
  * ========================================
  * [] File Name : boot.S
  *
- * [] Creation Date : 30-01-2015
- *
- * [] Last Modified : Fri 30 Jan 2015 08:07:11 PM IRST
+ * [] Creation Date : 09-06-2015
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
+*/
+/*
+ * Copyright (c) 2015 Parham Alvani.
 */
 .equ MBOOT_PAGE_ALIGN, 1<<0		# Load kernel and modules on a page boundary
 .equ MBOOT_MEM_INFO, 1<<1		# Provide your kernel with memory info
@@ -61,4 +62,4 @@ start:
 	call	kmain			# call our main() function.
 	jmp	.			# Enter an infinite loop, to stop the processor
                               		# executing whatever rubbish is in the memory
-                              		# after our kernel! 
+                              		# after our kernel!
