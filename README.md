@@ -12,10 +12,11 @@ I use **bochs** and **qemu** for emulation purposes. So, I've made a few shell s
 ###Special Thanks To
 1. [Dr.Bakhshi](mailto:bbakhshi@aut.ac.ir) : who taught me C
 2. [Dr.Payberah](mailto:amir@sics.se) : who taught me OS
-3. [Ahmad Asadi](ahmad.asadi.ir@gmail.com) : who has contributed to this project
+3. [Ahmad Asadi](mailto:ahmad.asadi.ir@gmail.com) : who has contributed to this project
 4. [Kamran Amini](mailto:kam.cpp@gmail.com) : who has contributed to this project
 5. [Mohammad Reza Mahboubi Ardakani](mailto:mrmahboubi95@yahoo.com) : who has contributed to this project
 6. [Navid Mashayekhi](mailto:mashayekhi.navid@yahoo.com) : who has contributed to this project
+7. [Elahe Jalalpoor](mailto:elahejalalpoor@gmail.com) : who was contributed to this project
 
 ###License
 **TOs** is free, open source and published under [GNU GENERAL PUBLIC LICENSE](http://opensource.org/licenses/gpl-2.0).
