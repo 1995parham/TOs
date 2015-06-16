@@ -31,6 +31,7 @@ int kmain(multiboot_info_t *mboot_ptr)
 	printf("Parham Alvani(parham.alvani@gmail.com)\n");
 	printf("Navid Mashayekhi(navidmsk@gmail.com)\n");
 	printf("Mohammad Reza Mahboubi Ardakani(mrmahboubi@gmail.com)\n");
+	printf("Elahe Jalalpoor(elahejalalpoor@gmail.com)\n");
 	
 	printf("Memupper: %ld\n", mboot_ptr->mem_upper);
 	printf("Memlower: %ld\n", mboot_ptr->mem_lower);
