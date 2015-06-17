@@ -36,6 +36,10 @@ int kmain(multiboot_info_t *mboot_ptr)
 	printf("Memupper: %ld\n", mboot_ptr->mem_upper);
 	printf("Memlower: %ld\n", mboot_ptr->mem_lower);
 	
+	/*
+	 * 'code' and 'end' labels defined in link.ld file
+	 * thus they are defined at linking time.
+	*/
 	printf("Kernel code start @ %p\n", &code);
 	printf("Kernel end @ %p\n", &end);
 
